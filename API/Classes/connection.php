@@ -13,10 +13,6 @@ class Connection{
             } catch (Error) {
             echo "Erro ao conectar ao Banco de Dados.";
         }
-        
     }
 }
-
-
-
 ?>

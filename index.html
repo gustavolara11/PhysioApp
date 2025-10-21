@@ -4,22 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physio App</title>
+    
 </head>
 <body>
     <nav><a href="pages/cadastrar.html">Cadastrar</a></nav>
     <main>
         
         <h1>Cadastro de Clientes - Fisioterapia</h1>
-        <section><form action="API/endpoint.php" method="POST">
-            <label for="search">Pesquisar:</label>
-            <input type="search" name="search" id="search">
-            <input type="submit" value="Pesquisar">
-        </form></section>
+        <section>
+            <form action="API/endpoint.php" method="POST">
+                <label for="search">Pesquisar:</label>
+                <input type="search" name="search" id="search" placeholder="Pesquise aqui">
+                <input type="button" value="Pesquisar" id="btnSearch">
+            </form>
+        </section>
         <section>
             <!-- lista de clientes -->
+             <table>
+                <thead>
+                    <th>Nome</th>
+                    <th>Nascimento</th>
+                    <th>Endereço</th>
+                    <th>Cidade</th>
+                    <th>Fone</th>
+                </thead>
+                <tbody class="patients_list">
+                </tbody>
+             </table>
         </section>
         
     
     </main>
 </body>
+<script src="JS/Patient.js"></script>
 </html>
