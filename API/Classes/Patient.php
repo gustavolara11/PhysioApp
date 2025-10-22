@@ -29,7 +29,7 @@ class Patient {
     }
     public function search($id){
         $con = new Connection;
-        $sql = "SELECT * FROM `patients` WHERE 'name' LIKE '%".$id."%'"; // trabalhando aqui pra funcionar o search
+        $sql = "SELECT * FROM `patients` WHERE `name` LIKE '%".$id."%'"; // trabalhando aqui pra funcionar o search
         $query = mysqli_query($con->getCon(), $sql);
         return mysqli_fetch_all($query, MYSQLI_ASSOC);
     }

@@ -31,6 +31,13 @@ document.getElementById("btnSearch").addEventListener("click", function(){
     const name = document.getElementById("search").value;
     searchPatient(name);
 });
+document.getElementById("search").addEventListener("keydown", function (event){
+    if(event.key === "Enter"){
+         event.preventDefault();
+        const name = document.getElementById("search").value;
+        searchPatient(name);
+    }
+})
 
 async function searchPatient(name){
     const data = { operation: "search", id: name}; 
@@ -42,8 +49,7 @@ async function searchPatient(name){
         body: JSON.stringify(data),
     });
     const jsonData = await response.json();
-    console.log(jsonData);
-
+    
     var list = document.querySelector(".patients_list");
         list.innerHTML = "";
     for (i = 0; i < jsonData.length; i++) {

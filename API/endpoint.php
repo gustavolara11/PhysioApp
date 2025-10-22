@@ -20,7 +20,7 @@ require_once "classes/Patient.php";
    $jsonData = json_decode($data, true);
    if (!empty($jsonData)) {
       $operation = $jsonData['operation'];
-      $name = $jsonData['name'] ?? ' ';
+      $name = $jsonData['id'] ?? NULL;
          if(!empty($name)){
             $newPatient = new Patient($name, ' ', ' ', ' ', ' ');
             $ret = $newPatient->$operation($name);
@@ -28,7 +28,7 @@ require_once "classes/Patient.php";
       
          }else{
       $newPatient = new Patient(' ', ' ', ' ', ' ', ' ');
-      $ret = $newPatient->$operation();
+      $ret = $newPatient->$operation($name);
       echo json_encode($ret);
       
       }
