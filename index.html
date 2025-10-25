@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physio App</title>
-    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav><a href="pages/cadastrar.html">Cadastrar</a></nav>
@@ -33,7 +33,27 @@
              </table>
         </section>
         
-    
+    <div class="form_container" id="form_container">
+        
+        <form class="update_form" method="post">
+            <h3>Atualização Cadastral</h3>
+            <input type="hidden" name="id" id="id">
+            <label for="name">Nome:</label>
+            <input type="text" name="name" id="name">
+            <label for="birthday">Nascimento:</label>
+            <input type="date" name="birthday" id="birthday">
+            <label for="adress">Endereço:</label>
+            <input type="text" name="adress" id="adress">
+            <label for="city">Cidade:</label>
+            <input type="text" name="city" id="city">
+            <label for="phone">Telefone:</label>
+            <input type="text" name="phone" id="phone">
+            <div class="form_bt">
+                <input type="button" value="Atualizar" onclick="update()">
+                <input type="button" value="Voltar" onclick="closeForm()">
+            </div>
+        </form>
+    </div>
     </main>
 </body>
 <script src="JS/Patient.js"></script>

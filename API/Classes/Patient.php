@@ -27,9 +27,19 @@ class Patient {
         $query = mysqli_query($con->getCon(), $sql);
         return mysqli_fetch_all($query, MYSQLI_ASSOC);
     }
+    public function update($id, $name, $birthday, $adress, $city, $phone){
+        $con = new Connection;
+        $sql = "UPDATE `patients` SET `name` = '$name', `birthday` = '$birthday', `adress` = '$adress', `city` = '$city', `phone` = '$phone' WHERE `id` = $id";
+        $query = mysqli_query($con->getCon(), $sql);
+    }
+    public function delete($id){
+        $con = new Connection;
+        $sql = "DELETE FROM `patients` WHERE `id` = ".$id."";
+        $query = mysqli_query($con->getCon(), $sql);
+    }
     public function search($id){
         $con = new Connection;
-        $sql = "SELECT * FROM `patients` WHERE `name` LIKE '%".$id."%'"; // trabalhando aqui pra funcionar o search
+        $sql = "SELECT * FROM `patients` WHERE `name` LIKE '%".$id."%'";
         $query = mysqli_query($con->getCon(), $sql);
         return mysqli_fetch_all($query, MYSQLI_ASSOC);
     }

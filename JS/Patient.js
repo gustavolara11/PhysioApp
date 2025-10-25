@@ -21,7 +21,9 @@ async function displayTable() {
                             <td>${jsonData[i].adress}</td>
                             <td>${jsonData[i].city}</td>
                             <td>${jsonData[i].phone}</td>
-                            <td><button onclick='updateP(${jsonData[i].id})'>Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button></td>
+                            <td>
+                                <button onclick="updateP(${jsonData[i].id}, '${jsonData[i].name}', '${jsonData[i].birthday}', '${jsonData[i].adress}', '${jsonData[i].city}', '${jsonData[i].phone}')">Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button>
+                            </td>
                             </tr>`;
   }
 }
@@ -40,7 +42,7 @@ document.getElementById("search").addEventListener("keydown", function (event){
 })
 
 async function searchPatient(name){
-    const data = { operation: "search", id: name}; 
+    const data = { operation: "search", name: name}; 
     const response = await fetch("API/endpoint.php",{
         method: "POST",
         headers: {
@@ -59,11 +61,61 @@ async function searchPatient(name){
                             <td>${jsonData[i].adress}</td>
                             <td>${jsonData[i].city}</td>
                             <td>${jsonData[i].phone}</td>
-                            <td><button onclick='updateP(${jsonData[i].id})'>Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button></td>
+                            <td><button onclick='updateP(${jsonData[i].id, jsonData[i].name,  jsonData[i].birthday, jsonData[i].adress, jsonData[i].city, jsonData[i].phone})'>Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button></td>
                             </tr>`;
   }
 }
-
+// Update Patient
+function updateP(id, name, birthday, adress, city, phone) {
+    openForm();
+    document.getElementById("id").value = id;
+    document.getElementById("name").value = name;
+    document.getElementById("birthday").value = birthday;
+    document.getElementById("adress").value = adress;
+    document.getElementById("city").value = city;
+    document.getElementById("phone").value = phone;
+}
+async function update(){
+        var id = document.getElementById("id").value;
+        var newName = document.getElementById("name").value;
+        var newBirthday = document.getElementById("birthday").value;
+        var newAdress = document.getElementById("adress").value;
+        var newCity = document.getElementById("city").value;
+        var newPhone = document.getElementById("phone").value;
+        
+        const data = { operation: "update", id: id, name: newName, birthday: newBirthday, adress: newAdress, city: newCity, phone: newPhone };
+        const response = await fetch("api/endpoint.php",{
+        method: "POST",
+        headers: {
+                "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+               
+    });
+    location.reload();
+}
+// Delete Patient
+async function deleteP(id){
+    const data = { operation: "delete", id: id };
+    const response = await fetch("api/endpoint.php",{
+        method: "POST",
+        headers: {
+                "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    location.reload();
+}
+//open Update form
+function openForm(){
+let form = document.getElementById('form_container');
+form.style.display = "flex";
+};
+//close Update form
+function closeForm(){
+let form = document.getElementById('form_container');
+form.style.display = "none";
+};
 
 
 
