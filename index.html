@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav><a href="pages/cadastrar.html">Cadastrar</a></nav>
+    <nav><button onclick="openCadForm()">Cadastrar</button></nav>
     <main>
         
         <h1>Cadastro de Clientes - Fisioterapia</h1>
@@ -36,7 +36,7 @@
     <div class="form_container" id="form_container">
         
         <form class="update_form" method="post">
-            <h3>Atualização Cadastral</h3>
+            <h3 id="form_tittle">Atualização Cadastral</h3>
             <input type="hidden" name="id" id="id">
             <label for="name">Nome:</label>
             <input type="text" name="name" id="name">
@@ -49,7 +49,8 @@
             <label for="phone">Telefone:</label>
             <input type="text" name="phone" id="phone">
             <div class="form_bt">
-                <input type="button" value="Atualizar" onclick="update()">
+                <input type="button" value="Cadastrar" onclick="create()" id="createButton">
+                <input type="button" value="Atualizar" onclick="update()" id="updateButton">
                 <input type="button" value="Voltar" onclick="closeForm()">
             </div>
         </form>

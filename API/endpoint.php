@@ -14,7 +14,7 @@ require_once "classes/Patient.php";
       $phone = $jsonData['phone'] ?? NULL;
 
       switch ($operation) { 
-      case 'create': // criar a funcao do Js de create
+      case 'create':
          $newPatient = new Patient($name, $birthday, $adress, $city, $phone);
          $newPatient->create();
          break;

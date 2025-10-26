@@ -27,6 +27,38 @@ async function displayTable() {
                             </tr>`;
   }
 }
+// Open new patient form
+function openCadForm(){
+    openForm();
+    let formTittle = document.getElementById('form_tittle');
+    formTittle.innerText = "Novo Paciente";
+    let nBut = document.getElementById('createButton');
+    let uBut = document.getElementById('updateButton');
+    nBut.style.display = 'flex';
+    uBut.style.display = 'none';
+    // após clickar em update, e clickar em cadastrar, os dados permaneciam nos inputs
+    document.getElementById("name").value = '';
+    document.getElementById("birthday").value = '';
+    document.getElementById("adress").value = '';
+    document.getElementById("city").value = '';
+    document.getElementById("phone").value = '';
+}
+async function create(){
+     let newName = document.getElementById("name").value;
+     let newBirthday = document.getElementById("birthday").value;
+     let newAdress = document.getElementById("adress").value;
+     let newCity = document.getElementById("city").value;
+     let newPhone = document.getElementById("phone").value;
+     const data = { operation: "create", id: id, name: newName, birthday: newBirthday, adress: newAdress, city: newCity, phone: newPhone };
+     let response = await fetch("API/endpoint.php",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+     });
+     location.reload();
+}
 
 // Search Patient Form
 document.getElementById("btnSearch").addEventListener("click", function(){
@@ -68,6 +100,10 @@ async function searchPatient(name){
 // Update Patient
 function updateP(id, name, birthday, adress, city, phone) {
     openForm();
+    let nBut = document.getElementById('createButton');
+    let uBut = document.getElementById('updateButton');
+    nBut.style.display = 'none';
+    uBut.style.display = 'flex';
     document.getElementById("id").value = id;
     document.getElementById("name").value = name;
     document.getElementById("birthday").value = birthday;
