@@ -75,6 +75,7 @@ document.getElementById("search").addEventListener("keydown", function (event){
 
 async function searchPatient(name){
     const data = { operation: "search", name: name}; 
+    console.log(data);
     const response = await fetch("API/endpoint.php",{
         method: "POST",
         headers: {

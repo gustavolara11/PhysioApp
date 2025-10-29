@@ -31,6 +31,11 @@ require_once "classes/Patient.php";
          $newPatient = new Patient($name, $birthday, $adress, $city, $phone);
          $newPatient->delete($id);
          break;
+      case 'search':
+         $newPatient = new Patient($name, $birthday, $adress, $city, $phone);
+         $data = $newPatient->search($name);
+         echo json_encode($data);
+         break;
       default:
          echo "Não foi possível realizar seu pedido.";
          break;
