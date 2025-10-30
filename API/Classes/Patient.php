@@ -43,6 +43,12 @@ class Patient {
         $query = mysqli_query($con->getCon(), $sql);
         return mysqli_fetch_all($query, MYSQLI_ASSOC);
     }
+    public function searchById($id){
+        $con = new Connection;
+        $sql = "SELECT * FROM `patients` WHERE `id` LIKE ".$id."";
+        $query = mysqli_query($con->getCon(), $sql);
+        return mysqli_fetch_all($query, MYSQLI_ASSOC);
+    }
         
     public function setName($name){
         $this->name = $name;

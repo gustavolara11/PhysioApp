@@ -42,3 +42,11 @@ height: 100%;
     display: flex;
     flex-direction: row;
 }
+.patient_data{
+    display: none;
+    flex-direction: column;
+    width: 60%;
+    height: 40%;
+    padding: 5em;
+    border: 1px solid black;
+}

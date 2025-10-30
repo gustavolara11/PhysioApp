@@ -55,7 +55,28 @@
             </div>
         </form>
     </div>
+    <section class="patient_data">
+        <div class="data_container">
+            <h6>Name:</h6><p id="nameData"></p>
+            <h6>Nascimento:</h6><p id="birthdayData"></p>
+            <h6>Endereço:</h6><p id="adressData"></p>
+            <h6>Cidade:</h6><p id="cityData"></p>
+            <h6>Fone:</h6><p id="phoneData"></p>
+        </div>
+        <div class="session_container">
+           <table>
+                <thead>
+                    <th>Data</th>
+                    <th>Hora</th>
+                </thead>
+                <tbody class="sessions_list">
+                </tbody>
+             </table> 
+        </div>
+        <button onclick="closeBdata()">Fechar</button>        
+    </section>
     </main>
 </body>
 <script src="JS/Patient.js"></script>
+<script src="JS/sessions.js"></script>
 </html>

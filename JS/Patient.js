@@ -22,7 +22,7 @@ async function displayTable() {
                             <td>${jsonData[i].city}</td>
                             <td>${jsonData[i].phone}</td>
                             <td>
-                                <button onclick="updateP(${jsonData[i].id}, '${jsonData[i].name}', '${jsonData[i].birthday}', '${jsonData[i].adress}', '${jsonData[i].city}', '${jsonData[i].phone}')">Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button>
+                                <button onclick="sessions(${jsonData[i].id})">Sessions</button> / <button onclick="updateP(${jsonData[i].id}, '${jsonData[i].name}', '${jsonData[i].birthday}', '${jsonData[i].adress}', '${jsonData[i].city}', '${jsonData[i].phone}')">Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button>
                             </td>
                             </tr>`;
   }
