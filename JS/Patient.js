@@ -12,19 +12,10 @@ async function displayTable() {
     });
     const jsonData = await response.json();
       
-    var list = document.querySelector(".patients_list");
+    var list = document.querySelector("#patients_cards_container");
         list.innerHTML = "";
     for (i = 0; i < jsonData.length; i++) {
-        list.innerHTML += `<tr>
-                            <td>${jsonData[i].name}</td>
-                            <td>${jsonData[i].birthday}</td>
-                            <td>${jsonData[i].adress}</td>
-                            <td>${jsonData[i].city}</td>
-                            <td>${jsonData[i].phone}</td>
-                            <td>
-                                <button onclick="sessions(${jsonData[i].id})">Sessions</button> / <button onclick="updateP(${jsonData[i].id}, '${jsonData[i].name}', '${jsonData[i].birthday}', '${jsonData[i].adress}', '${jsonData[i].city}', '${jsonData[i].phone}')">Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button>
-                            </td>
-                            </tr>`;
+        list.innerHTML += `<button onclick="sessions(${jsonData[i].id})" class="patient_card"><p>${jsonData[i].name}</p></button>`
   }
 }
 // Open new patient form
@@ -75,7 +66,6 @@ document.getElementById("search").addEventListener("keydown", function (event){
 
 async function searchPatient(name){
     const data = { operation: "search", name: name}; 
-    console.log(data);
     const response = await fetch("API/endpoint.php",{
         method: "POST",
         headers: {
@@ -84,22 +74,15 @@ async function searchPatient(name){
         body: JSON.stringify(data),
     });
     const jsonData = await response.json();
-    
-    var list = document.querySelector(".patients_list");
-        list.innerHTML = "";
-    for (i = 0; i < jsonData.length; i++) {
-        list.innerHTML += `<tr>
-                            <td>${jsonData[i].name}</td>
-                            <td>${jsonData[i].birthday}</td>
-                            <td>${jsonData[i].adress}</td>
-                            <td>${jsonData[i].city}</td>
-                            <td>${jsonData[i].phone}</td>
-                            <td><button onclick='updateP(${jsonData[i].id, jsonData[i].name,  jsonData[i].birthday, jsonData[i].adress, jsonData[i].city, jsonData[i].phone})'>Update</button> / <button onclick='deleteP(${jsonData[i].id})'>Delete</button></td>
-                            </tr>`;
+        var list = document.querySelector("#patients_cards_container");
+            list.innerHTML = "";
+        for (i = 0; i < jsonData.length; i++) {
+            list.innerHTML += `<button onclick="sessions(${jsonData[i].id})" class="patient_card"><p>${jsonData[i].name}</p></button>`
   }
 }
 // Update Patient
 function updateP(id, name, birthday, adress, city, phone) {
+    closeBdata();
     openForm();
     let nBut = document.getElementById('createButton');
     let uBut = document.getElementById('updateButton');
@@ -132,7 +115,7 @@ async function update(){
     location.reload();
 }
 // Delete Patient
-async function deleteP(id){
+async function deleteP(id){// não esta funcionando quando o pcte tem sessoes cadastradas
     const data = { operation: "delete", id: id };
     const response = await fetch("api/endpoint.php",{
         method: "POST",

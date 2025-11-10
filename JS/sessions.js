@@ -26,6 +26,8 @@ async function patientData(id){
     showCity.innerText = jsonData[0].city;
     let showPhone = document.getElementById('phoneData');
     showPhone.innerText = jsonData[0].phone;
+    let showButtons = document.getElementById('upDeleteButtons');
+    showButtons.innerHTML = `<button onclick="updateP('${jsonData[0].id}', '${jsonData[0].name}', '${jsonData[0].birthday}', '${jsonData[0].adress}', '${jsonData[0].city}', '${jsonData[0].phone}')">Atualizar</button><button onclick="deleteP('${jsonData[0].id}')">Deletar</button>`
 }
 //Display Sessions Data
 async function sessionData(id){
@@ -58,4 +60,21 @@ function closeBdata(){
 function openBdata(){
     let section = document.querySelector('.patient_data');
     section.style.display = "flex";
+}
+// new Appointment
+async function newAppoint(event){
+    event.preventDefault();
+    let date = document.querySelector("#newDate").value;
+    let hour = document.querySelector("#newHour").value;
+
+    const data = { operation: "create", id: id, date: date, hour: hour}; // falta implementar o id pra mandar pra api
+    const response = await fetch("API/sessions.php",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    const jsonData = await response.json();
+    
 }

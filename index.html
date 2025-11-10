@@ -18,23 +18,10 @@
                 <input type="button" value="Pesquisar" id="btnSearch">
             </form>
         </section>
-        <section>
-            <!-- lista de clientes -->
-             <table>
-                <thead>
-                    <th>Nome</th>
-                    <th>Nascimento</th>
-                    <th>Endereço</th>
-                    <th>Cidade</th>
-                    <th>Fone</th>
-                </thead>
-                <tbody class="patients_list">
-                </tbody>
-             </table>
+        <section id="patients_cards_container" class="patients_cards_container">
         </section>
         
     <div class="form_container" id="form_container">
-        
         <form class="update_form" method="post">
             <h3 id="form_tittle">Atualização Cadastral</h3>
             <input type="hidden" name="id" id="id">
@@ -56,13 +43,15 @@
         </form>
     </div>
     <section class="patient_data">
-        <div class="data_container">
-            <h6>Name:</h6><p id="nameData"></p>
-            <h6>Nascimento:</h6><p id="birthdayData"></p>
-            <h6>Endereço:</h6><p id="adressData"></p>
-            <h6>Cidade:</h6><p id="cityData"></p>
-            <h6>Fone:</h6><p id="phoneData"></p>
-        </div>
+        <div class="all_session_container">
+            <div class="data_container">
+                <div><h6>Name:</h6><p id="nameData"></p></div>
+                <div><h6>Nascimento:</h6><p id="birthdayData"></p></div>
+                <div><h6>Endereço:</h6><p id="adressData"></p></div>
+                <div><h6>Cidade:</h6><p id="cityData"></p></div>
+                <div><h6>Fone:</h6><p id="phoneData"></p></div>
+                <div id="upDeleteButtons"></div>
+            </div>
         <div class="session_container">
            <table>
                 <thead>
@@ -72,8 +61,16 @@
                 <tbody class="sessions_list">
                 </tbody>
              </table> 
+             <form>
+                <label for="newDate">Data:</label>
+                <input type="date" id="newDate">
+                <label for="newHour">Hora:</label>
+                <input type="time" id="newHour">
+                <button onclick="newAppoint(event)">Cadastrar</button>
+             </form>
         </div>
-        <button onclick="closeBdata()">Fechar</button>        
+        <button onclick="closeBdata()">Fechar</button>   
+        </div>     
     </section>
     </main>
 </body>
