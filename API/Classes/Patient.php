@@ -7,6 +7,7 @@ class Patient {
     protected $adress;
     protected $city;
     protected $phone;
+    protected $status;
 
     public function __construct($name, $birthday, $adress, $city, $phone) {
         $this->setName($name);
@@ -14,16 +15,17 @@ class Patient {
         $this->setAdress($adress);
         $this->setCity($city);
         $this->setPhone($phone);
+        $this->setStatus(1);
     }
     
     public function create(){
         $con = new Connection;
-        $sql = "INSERT INTO `patients`(`id`, `name`, `birthday`, `adress`, `city`, `phone`) VALUES (NULL,'".$this->getName()."','".$this->getBirthday()."','".$this->getAdress()."','".$this->getCity()."','".$this->getPhone()."');";
+        $sql = "INSERT INTO `patients`(`id`, `name`, `birthday`, `adress`, `city`, `phone`, `status`) VALUES (NULL,'".$this->getName()."','".$this->getBirthday()."','".$this->getAdress()."','".$this->getCity()."','".$this->getPhone()."','".$this->getStatus()."');";
         $query = mysqli_query($con->getCon(), $sql);
     }
     public function read(){
         $con = new Connection;
-        $sql = "SELECT * FROM `patients` ORDER BY `name`";
+        $sql = "SELECT * FROM `patients` WHERE `status` = '1' ORDER BY `name`";
         $query = mysqli_query($con->getCon(), $sql);
         return mysqli_fetch_all($query, MYSQLI_ASSOC);
     }
@@ -34,12 +36,12 @@ class Patient {
     }
     public function delete($id){
         $con = new Connection;
-        $sql = "DELETE FROM `patients` WHERE `id` = ".$id."";
+        $sql = "UPDATE `patients` SET `status` = '0' WHERE `id` = ".$id."";
         $query = mysqli_query($con->getCon(), $sql);
     }
     public function search($id){
         $con = new Connection;
-        $sql = "SELECT * FROM `patients` WHERE `name` LIKE '%".$id."%'";
+        $sql = "SELECT * FROM `patients` WHERE `name` LIKE '%".$id."%' AND `status` = '1'";
         $query = mysqli_query($con->getCon(), $sql);
         return mysqli_fetch_all($query, MYSQLI_ASSOC);
     }
@@ -80,7 +82,11 @@ class Patient {
     public function getPhone(){
         return $this->phone;
     }
-
+    public function setStatus($status){
+        $this->status = $status;
+    }
+    public function getStatus(){
+        return $this->status;
+    }
 }
-
 ?>
